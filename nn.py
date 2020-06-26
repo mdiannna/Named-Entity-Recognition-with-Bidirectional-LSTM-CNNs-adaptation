@@ -90,7 +90,9 @@ caseEmbeddings = np.identity(len(case2Idx), dtype='float32')
 word2Idx = {}
 wordEmbeddings = []
 
-fEmbeddings = open("embeddings/glove.6B.100d.txt", encoding="utf-8")
+# fEmbeddings = open("embeddings/glove.6B.100d.txt", encoding="utf-8")
+fEmbeddings = open("embeddings/glove.6B.50d.txt", encoding="utf-8")
+
 
 for line in fEmbeddings:
     split = line.strip().split(" ")
@@ -111,6 +113,8 @@ for line in fEmbeddings:
         word2Idx[split[0]] = len(word2Idx)
         
 wordEmbeddings = np.array(wordEmbeddings)
+
+
 
 char2Idx = {"PADDING":0, "UNKNOWN":1}
 for c in " 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ.,-_()[]{}!?:;#'\"/\\%$`&=*+@^~|":
