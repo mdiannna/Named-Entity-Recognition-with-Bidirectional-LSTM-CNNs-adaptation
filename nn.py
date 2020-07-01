@@ -58,7 +58,9 @@ def tag_dataset(dataset):
 # testSentences = readfile("data/test.txt")
 
 # Adapted on my dataset
-trainSentences = readfile("data/mydataset1.txt")
+# trainSentences = readfile("data/mydataset1.txt")
+# trainSentences = readfile("data/dataset_from_json.txt")
+trainSentences = readfile("data/dataset_from_json_processed_first_line2.txt")
 devSentences = readfile("data/mydataset_valid1.txt")
 testSentences = readfile("data/mydataset_test1.txt")
 

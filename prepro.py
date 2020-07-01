@@ -12,6 +12,8 @@ def readfile(filename):
     sentences = []
     sentence = []
     for line in f:
+        # added in code
+        line = line.replace('\xa0', '')
         if len(line)==0 or line.startswith('-DOCSTART') or line[0]=="\n":
             if len(sentence) > 0:
                 sentences.append(sentence)
@@ -84,6 +86,18 @@ def createBatches(data):
         batch_len.append(z)
     return batches,batch_len
 
+
+# --------------
+# Added function to preprocess special chars
+# --------------
+def preprocessSpecialChars(c):
+    if c == 'ü':
+        c = 'u'
+    if c == 'ö':
+        c = "o"
+    return c
+# --------------
+
 def createMatrices(sentences, word2Idx, label2Idx, case2Idx,char2Idx):
     unknownIdx = word2Idx['UNKNOWN_TOKEN']
     paddingIdx = word2Idx['PADDING_TOKEN']    
@@ -110,6 +124,7 @@ def createMatrices(sentences, word2Idx, label2Idx, case2Idx,char2Idx):
                 unknownWordCount += 1
             charIdx = []
             for x in char:
+                x = preprocessSpecialChars(x)
                 charIdx.append(char2Idx[x])
             #Get the label and map to int            
             wordIndices.append(wordIdx)
